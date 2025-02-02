@@ -7,9 +7,9 @@ It is a mirror of  [[https://github.com/eldriv/scripts/tree/main/emacs-shell-scr
 To ensure everything works correctly, it's important to have the right directory structure,
 #+begin_src lisp
 ├── ems.asd              ;; ASDF
-├── src                ;; Directory
+├── src                       ;; Directory
 │   └── ems.lisp         ;; Lisp file containing the CLI developmenet
-├── Makefile             ;; Makefile
+├── Makefile              ;; Makefile
 #+end_src
 Once the project is set up, we can build it using this command,
 #+begin_src makefile

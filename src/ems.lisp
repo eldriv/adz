@@ -9,13 +9,13 @@
 ;;; Special config
 
 (defparameter *config*
-    (list
-     :name "ems"
-     :description "CLI tool for managing Lisp nix flake"
-     :version "1.0.0"
-     :usage "[command] [options]"
-     :dir (merge-pathnames #P"myflake/" (user-homedir-pathname))
-     :time 4.5))
+  (list
+   :name "ems"
+   :description "CLI tool for managing Lisp nix flake"
+   :version "1.0.0"
+   :usage "[command] [options]"
+   :dir (merge-pathnames #P"myflake/" (user-homedir-pathname))
+   :time 4.5))
 
 
 ;;; Utilities
@@ -95,13 +95,14 @@
    (define-option :counter #\v "verbose" "Enable verbose output" :key :verbose)
    (define-option :string #\d "debug" "Enable debug mode" :key :debug)))
 
-(defun top-level/handler (cmd)
+(defun top-level-handler (cmd)
+  "Checks if there are any extra arguments, if there's any and
+if it's an unknown command return first condition, Otherwise return the
+ general usage instructions."
   (let ((args (clingon:command-arguments cmd)))
-    (if args
-        (format t "Unknown command: ~A~%" (first args))
-        (progn
-          (format t "Usage: ~A~%" (get-config :usage))
-          (clingon:print-usage cmd t)))))
+    (cond (args (format t "Unknown command: ~A~%" (first args)))
+          (t (progn (format t "Usage: ~A~%" (get-config :usage))
+                    (clingon:print-usage cmd t))))))
 
 (defun make-top-level-command ()
   "Top-level commands"

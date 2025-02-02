@@ -110,7 +110,7 @@
    :description (get-config :description)
    :version (get-config :version)
    :usage (get-config :usage)
-   :authors '("Eldriv <michael.adrian.villareal@valmiz.com>")
+   :authors '("Eldriv")
    :options (make-cli-options)
    :handler #'top-level/handler
    :sub-commands (list

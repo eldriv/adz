@@ -1,6 +1,6 @@
 * ems 
 
-It is a mirror of emacs-shell-script under [shell-scripts](https://git.valmiz.com/nycto/shell-scripts/src/branch/main/emacs-shell-script), instead of using bash script, I used clingon (CLI APP) to run my dev-env emacs into my machine
+It is a mirror of emacs-shell-script under [[shell-scripts][https://git.valmiz.com/nycto/shell-scripts/src/branch/main/emacs-shell-script]], instead of using bash script, I used clingon (CLI APP) to run my dev-env emacs into my machine
 
 * Usage
 

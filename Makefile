@@ -24,7 +24,7 @@ build:
 		--eval '(require :asdf)' \
 		--eval '(push #p"$(PROJECT_DIR)/" asdf:*central-registry*)' \
 		--eval '(ql:quickload :$(SYSTEM_NAME))' \
-		--eval '(asdf:operate :program-op :$(SYSTEM_NAME))' \
+		--eval '(asdf:make  :$(SYSTEM_NAME))' \
 		--eval '(quit)'
 
 clean:

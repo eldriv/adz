@@ -48,19 +48,19 @@
 
 (defun run-handler (cmd)
   "Run Emacs dev-env."
-  (run! cmd "vix" "develop" ".#lisp" "-c" "emacs"))
+  (run! cmd "nix" "develop" ".#lisp" "-c" "emacs"))
 
 (defun update-handler (cmd)
   "Update flake."
-  (run! cmd "vix" "flake" "update"))
+  (run! cmd "nix" "flake" "update"))
 
 (defun show-handler (cmd)
   "Display error in flake."
-  (run! cmd "vix" "flake" "show"))
+  (run! cmd "nix" "flake" "show"))
 
 (defun version-handler (cmd)
   "Check SBCL version."
-  (run! cmd "vix" "develop" ".#lisp" "-c" "sbcl" "--version"))
+  (run! cmd "nix" "develop" ".#lisp" "-c" "sbcl" "--version"))
 
 (defmacro define-flake-command (name alias description handler)
   "Define a flake command with aliases prior to its handler."

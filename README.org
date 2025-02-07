@@ -18,7 +18,7 @@ $ make build
 After building, an executable named ems will be created. You can run it from within the project directory using,
 #+begin_src
 $ ./ems --help 
-;;or 
+#or 
 $ ./ems
 #+end_src
 To make it accessible globally, insert this into your shell configuration files—.bashrc or .zshenv,
@@ -27,6 +27,6 @@ export PATH="$HOME<your/project/directory/>:$PATH"
 #+end_Src
 Then run,
 #+begin_Src lisp
-$ ems r  ;; To run Emacs development environment
-$ ems sv ;; To Check SBCL version
+$ ems r  # To run Emacs development environment
+$ ems sv # To Check SBCL version
 #+end_Src

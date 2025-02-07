@@ -65,7 +65,7 @@
 (defmacro define-flake-command (name alias description handler)
   "Define a flake command with aliases prior to its handler."
   (let ((maker-name (intern (format nil "MAKE-~A-COMMAND" name))))
-    `(def- ,maker-name ()
+    `(defun ,maker-name ()
        (clingon:make-command
         :name ,name
         :aliases (list ,alias)
@@ -87,7 +87,7 @@
     :short-name ,short-name
     :long-name ,long-name
     :description ,description
-    :key ,(or key (intern (string-upcase long-name) "KEYWORD"))))
+    :key ,(or key (read-from-string (format nil ":~:@(~A~)" long-name)))))
 
 (defun make-cli-options ()
   "Create CLI options"
@@ -96,9 +96,8 @@
    (define-option :string #\d "debug" "Enable debug mode" :key :debug)))
 
 (defun top-level-handler (cmd)
-  "Checks if there are any extra arguments, if there's any and
-if it's an unknown command return first condition, Otherwise return the
- general usage instructions."
+  "Checks if there are any extra arguments, if there's any and if it's an
+  unknown command return first condition, Otherwise return the general usage instructions."
   (let ((args (clingon:command-arguments cmd)))
     (cond (args (format t "Unknown command: ~A~%" (first args)))
           (t (progn (format t "Usage: ~A~%" (get-config :usage))
@@ -111,9 +110,9 @@ if it's an unknown command return first condition, Otherwise return the
    :description (get-config :description)
    :version (get-config :version)
    :usage (get-config :usage)
-   :authors '("Eldriv")
+   :authors '("Eldriv <michael.adrian.villareal@valmiz.com>")
    :options (make-cli-options)
-   :handler #'top-level/handler
+   :handler #'top-level-handler
    :sub-commands (list
                   (make-run-command)
                   (make-update-command)

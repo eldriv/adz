@@ -1,6 +1,7 @@
 (uiop:define-package #:ems/src/commands
-  (:use #:cl 
-           #:ems/src/core))
+  (:use #:cl
+        #:marie
+        #:ems/src/core))
 
 (in-package #:ems/src/commands)
 

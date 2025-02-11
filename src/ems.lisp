@@ -9,13 +9,13 @@
 ;;; Special config
 
 (defparameter *config*
-  (list
-   :name "ems"
-   :description "CLI tool for managing Lisp nix flake"
-   :version "1.0.0"
-   :usage "[command] [options]"
-   :dir (merge-pathnames #P"myflake/" (user-homedir-pathname))
-   :time 4.5))
+    (list
+     :name "ems"
+     :description "CLI tool for managing Lisp nix flake"
+     :version "1.0.0"
+     :usage "[command] [options]"
+     :dir (merge-pathnames #P"myflake/" (user-homedir-pathname))
+     :time 4.5))
 
 
 ;;; Utilities
@@ -33,6 +33,7 @@
   "Run a command with logging."
   (log-msg cmd "Running command: ~A ~{~A ~}~%" command args)
   (uiop:run-program (cons command args)
+                    :input :interactive
                     :output :interactive
                     :error-output :interactive))
 
@@ -58,9 +59,17 @@
   "Display error in flake."
   (run! cmd "nix" "flake" "show"))
 
+(defun sbcl-handler (cmd)
+  "Check SBCL version."
+  (run! cmd "nix" "develop" ".#lisp" "-c" "sbcl" "--eval" "(ql:quickload :kons-9)"))
+
 (defun version-handler (cmd)
   "Check SBCL version."
   (run! cmd "nix" "develop" ".#lisp" "-c" "sbcl" "--version"))
+
+(defun shell-handler (cmd)
+  "Check SBCL version."
+  (run! cmd "nix" "develop" ".#lisp"))
 
 (defmacro define-flake-command (name alias description handler)
   "Define a flake command with aliases prior to its handler."
@@ -72,11 +81,12 @@
         :description ,description
         :handler ,handler))))
 
-(define-flake-command "run" "r" "Run the Emacs shell" #'run-handler)
-(define-flake-command "update" "u" "Update the Lisp nix flake" #'update-handler)
-(define-flake-command "show" "s" "Show output attribute of the Lisp flake" #'show-handler)
+(define-flake-command "run" "rn" "Run the Emacs shell" #'run-handler)
+(define-flake-command "update" "upd" "Update the Lisp nix flake" #'update-handler)
+(define-flake-command "show" "sh" "Show output attribute of the Lisp flake" #'show-handler)
 (define-flake-command "sbcl-version" "sv" "Check SBCL's version" #'version-handler)
-
+(define-flake-command "sbcl" "sb" "Open SBCL" #'sbcl-handler)
+(define-flake-command "shell" "sl" "Open DevShell" #'shell-handler)
 
 ;;; top-level
 
@@ -117,7 +127,9 @@
                   (make-run-command)
                   (make-update-command)
                   (make-show-command)
-                  (make-sbcl-version-command))))
+                  (make-sbcl-version-command)
+                  (make-sbcl-command)
+                  (make-shell-command))))
 
 (defun main ()
   "Main entry point for the application"

@@ -1,5 +1,12 @@
 (uiop:define-package #:ems/src/core
-  (:use #:cl))
+  (:use #:cl)
+(:export :run-handler
+              :update-handler
+              :show-handler
+              :sbcl-handler
+              :version-handler
+              :shell-handler
+              :define-flake-command))
 
 (in-package #:ems/src/core)
 

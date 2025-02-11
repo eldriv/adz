@@ -7,7 +7,7 @@
 
 ;;; Special config
 
-(defparameter *config*
+(defp *config*
   (list
    :name "ems"
    :description "CLI tool for managing Lisp nix flake"

@@ -16,13 +16,13 @@ To ensure everything works correctly, it's important to have the right directory
 #+end_src
 Once the project is set up, we can build it using this command,
 #+begin_src makefile
-$ make build
+make build
 #+end_src
 After building, an executable named ems will be created. You can run it from within the project directory using,
 #+begin_src
-$ ./ems --help 
+./ems --help 
 # or 
-$ ./ems
+./ems
 #+end_src
 To make it accessible globally, insert this into your shell configuration files—.bashrc or .zshenv,
 #+begin_src lisp
@@ -30,6 +30,6 @@ export PATH="$HOME<your/project/directory/>:$PATH"
 #+end_Src
 Then run,
 #+begin_Src lisp
-$ ems r  # To run Emacs development environment
-$ ems sv # To Check SBCL version
+ems r  # To run Emacs development environment
+ems sv # To Check SBCL version
 #+end_Src

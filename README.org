@@ -2,6 +2,9 @@
 
 It is a mirror of  [[https://github.com/eldriv/scripts/tree/main/emacs-shell-script][emacs-shell-script]] , instead of using bash script, I used clingon—CLI APP—to run my Emacs development environment into my machine.
 
+* Dependencies
+- Marie
+
 * Usage
 
 To ensure everything works correctly, it's important to have the right directory structure,

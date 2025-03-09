@@ -17,6 +17,7 @@
                #:marie
                #:clingon
                #:ems/src/core
+               #:ems/src/run
                #:ems/src/commands
                #:ems/src/main)
   :build-operation "program-op"

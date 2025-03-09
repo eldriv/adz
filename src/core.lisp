@@ -44,85 +44,59 @@
                     :output :interactive
                     :error-output :interactive))
 
-(def- run-flake (cmd command &rest args)
+(def run-flake (cmd command &rest args)
   "Safely execute commands in myflake directory with logging."
   (let ((dir (namestring (get-paths :flake))))
     (log-msg cmd "Changing to directory: ~A~%" dir)
     (uiop:chdir dir)
     (apply #'run-cmd cmd command args)))
 
-(def- run-web (cmd command &rest args)
+(def run-web (cmd command &rest args)
   "Safely execute commands in krei-web directory with logging."
   (let ((dir (namestring (get-paths :web))))
     (log-msg cmd "Changing to directory: ~A~%" dir)
     (uiop:chdir dir)
     (apply #'run-cmd cmd command args)))
 
-
-(def- run (cmd command &rest args)
+(def run (cmd command &rest args)
   "Safely execute commands in current directory with logging."
   (let ((dir (namestring (uiop/os:getcwd))))
     (log-msg cmd "Changing to directory: ~A~%" dir)
     (uiop:chdir dir)
     (apply #'run-cmd cmd command args)))
 
+(def top-level-handler (cmd)
+  "Default handler for category commands - just prints help"
+  (clingon:print-usage cmd t))
 
-(defm define-command (name alias description handler)
-  "Define a flake command with aliases prior to its handler."
-  (let ((maker-name (intern (format nil "MAKE-~A-COMMAND" name))))
+(def- intern-fn (name)
+  "Intern a function name symbol from a command name symbol."
+  (intern (format nil "MAKE-~A-COMMAND" (string-upcase (symbol-name name)))))
+
+(defm define-main-commands (name (&optional alias)
+                                 description
+                                 handler
+                                 sub-commands
+                                 &optional usage)
+  "Define a main command with sub commands."
+  (let ((maker-name (intern-fn name)))
     `(def ,maker-name ()
        (clingon:make-command
-        :name ,name
-        :aliases (list ,alias)
+        :name ,(string-downcase (symbol-name name))
+        :aliases (list ,@(when alias `(,(string-downcase (symbol-name alias)))))
         :description ,description
-        :handler ,handler))))
-
-;;;; Run commands
+        :handler (when (eq t ,handler)
+                   #'top-level-handler)
+        :sub-commands ,sub-commands
+        :usage ,usage))))
 
-
-;;; Emacs and Lisp 
-
-(def run-handler (cmd)
-  "Run Emacs dev-env."
-  (run-flake cmd "nix" "develop" ".#lisp" "-c" "emacs"))
-
-(def update-handler (cmd)
-  "Update flake."
-  (run-flake cmd "nix" "flake" "update"))
-
-(def show-handler (cmd)
-  "Display error in flake."
-  (run-flake cmd "nix" "flake" "show"))
-
-(def version-handler (cmd)
-  "Check SBCL version."
-  (run-flake cmd "nix" "develop" ".#lisp" "-c" "sbcl" "--version"))
-
-(def shell-handler (cmd)
-  "Check SBCL version."
-  (run-flake cmd "nix" "develop" ".#lisp"))
-
-
-;;; Kons-9
-
-(def kons-handler (cmd)
-  "Open Kons-9 inside SBCL terminal."
-  (progn
-    (run-flake cmd "nix" "develop" ".#lisp" "-c" "sbcl" "--eval" "(ql:quickload
-:kons-9)" "--eval" "(kons-9:run)")))
-
-
-;;; Krei Website
-
-(def krei-web-handler (cmd)
-  "Initialize Krei web."
-  (progn
-    (run-web cmd "hugo")
-    (run-web cmd "npm" "start" "run")))
-
-
-;;; Open VScode
-
-(def vs-code-handler (cmd)
-  "Initialize VS code."
-  (run cmd "code" "gh/krei-systems.github.io"))
+(defm define-sub-command (name (&optional alias) description handler &optional usage)
+  "Define a command with aliases prior to its handler."
+  (let ((maker-name (intern-fn name)))
+    `(def ,maker-name ()
+       (clingon:make-command
+        :name ,(string-downcase (symbol-name name))
+        :aliases (list ,@(when alias `(,(string-downcase (symbol-name alias)))))
+        :description ,description
+        :handler ,handler
+        :usage ,usage))))

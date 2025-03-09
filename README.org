@@ -1,22 +1,17 @@
 * ems 
 
-It is a mirror of  [[https://github.com/eldriv/scripts/tree/main/emacs-shell-script][emacs-shell-script]] , instead of using bash script, I used clingon—CLI APP—to run my Emacs development environment into my NixOS machine.
+It is a mini-wrapper CLI tool to run my Emacs development environment and others like graphic, web and IDE tools, and rsync into my NixOS machine.
 
 * Dependencies
-- Marie
+- [[https://github.com/krei-systems/marie][Marie]]
+- [[https://github.com/eldriv/flakes-dev][Flakes]]
+- [[https://github.com/eldriv/scripts/tree/main/wordpress-script][Wordpress local]]
 
 * Usage
 
-To ensure everything works correctly, it's important to have the right directory structure,
-#+begin_src lisp
-├── ems.asd              ;; ASDF
-├── src                  ;; Directory
-│   └── ems.lisp         ;; Lisp file containing the CLI developmenet
-├── Makefile             ;; Makefile
-#+end_src
-Once the project is set up, we can build it using this command,
+We can build it using this command,
 #+begin_src makefile
-make build
+make 
 #+end_src
 After building, an executable named ems will be created. You can run it from within the project directory using,
 #+begin_src
@@ -27,7 +22,9 @@ To make it accessible globally, insert this into your shell configuration files�
 export PATH="$HOME<your/project/directory/>:$PATH"
 #+end_Src
 Then run,
+
+* Lisp Flakes
 #+begin_Src lisp
-ems r  # To run Emacs development environment
-ems sv # To Check SBCL version
+ems lf e # To run Emacs development environment
+ems lf sv # To Check SBCL version
 #+end_Src

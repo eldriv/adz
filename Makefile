@@ -26,6 +26,7 @@ build:
 		--eval '(ql:quickload :$(SYSTEM_NAME))' \
 		--eval '(asdf:make :$(SYSTEM_NAME))' \
 		--eval '(quit)'
+	ln -s $(PWD)/ems ~/bin
 
 clean:
 	rm -f $(BUILD_OUTPUT)

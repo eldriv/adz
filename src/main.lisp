@@ -33,6 +33,18 @@
           (t (progn (format t "Usage: ~A~%" (get-config :usage))
                     (clingon:print-usage cmd t))))))
 
+(def- list-fns-commands ()
+  "List of functions commands."
+  (list
+   (make-emacs-command)
+   (make-update-command)
+   (make-show-command)
+   (make-sbcl-version-command)
+   (make-shell-command)
+   (make-kons-command)
+   (make-krei-web-command)
+   (make-vscode-command)))
+
 (def- make-top-level-command ()
   "Top-level commands"
   (clingon:make-command
@@ -43,13 +55,8 @@
    :authors '("Eldriv <michael.adrian.villareal@valmiz.com>")
    :options (make-cli-options)
    :handler #'top-level-handler
-   :sub-commands (list
-                  (make-run-command)
-                  (make-update-command)
-                  (make-show-command)
-                  (make-sbcl-version-command)
-                  (make-sbcl-command)
-                  (make-shell-command))))
+   :sub-commands (list-fns-commands)))
+
 
 (def- main ()
   "Main entry point for the application"

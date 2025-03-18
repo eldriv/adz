@@ -42,15 +42,19 @@
 (def krei-web-handler (cmd)
   "Initialize Krei web."
   (progn
-    (run-web cmd "hugo")
-    (run-web cmd "npm" "start" "run" "&")
-    (run-web cmd "firefox" "-new-tab" "https://localhost:1313")))
+    (run-web cmd :web "hugo")
+    (run-web cmd :web "npm" "start" "run" "&")
+    (run-web cmd :web "firefox" "-new-tab" "https://localhost:1313")))
 
 (def wordpress-handler (cmd)
   "Initialize Krei web."
   (progn
     (run cmd "wordpress" "-r")))
 
+(def redmine-handler (cmd)
+  (progn
+    (run-web cmd :docker "firefox" "-new-tab" "http://0.0.0.0/")
+    (run-web cmd :docker "make")))
 
 ;;; IDE tools
 

@@ -42,9 +42,9 @@
 (def krei-web-handler (cmd)
   "Initialize Krei web."
   (progn
-    (run-web cmd :web "hugo")
-    (run-web cmd :web "npm" "start" "run" "&")
-    (run-web cmd :web "firefox" "-new-tab" "https://localhost:1313")))
+    (run-dat cmd :web "hugo")
+    (run-dat cmd :web "npm" "start" "run" "&")
+    (run-dat cmd :web "firefox" "-new-tab" "https://localhost:1313")))
 
 (def wordpress-handler (cmd)
   "Initialize Krei web."
@@ -53,14 +53,14 @@
 
 (def redmine-handler (cmd)
   (progn
-    (run-web cmd :redmine-docker "firefox" "-new-tab" "http://0.0.0.0/")
-    (run-web cmd :redmine-docker "make")))
+    (run-dat cmd :redmine-docker "firefox" "-new-tab" "http://0.0.0.0/")
+    (run-dat cmd :redmine-docker "make")))
 
 (def kb-handler (cmd)
   (progn
-    (run-web cmd :kb-docker "docker-compose" "-f"
+    (run-dat cmd :kb-docker "docker-compose" "-f"
              "dev/containers/docker-compose.yml" "up" "-d")
-    (run-web cmd :kb-docker "docker" "exec" "wiki-app" "yarn" "dev")))
+    (run-dat cmd :kb-docker "docker" "exec" "wiki-app" "yarn" "dev")))
 
 
 ;;; IDE tools

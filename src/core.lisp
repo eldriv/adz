@@ -47,8 +47,8 @@
                     :output :interactive
                     :error-output :interactive))
 
-(def run-dat (cmd dat command &rest args)
-  "Safely execute commands in krei-web directory with logging."
+(def run* (cmd dat command &rest args)
+  "Safely execute commands but with control of directory with logging."
   (let ((dir (namestring (get-paths dat))))
     (log-msg cmd "Changing to directory: ~A~%" dir)
     (uiop:chdir dir)

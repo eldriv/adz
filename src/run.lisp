@@ -10,30 +10,30 @@
 
 (def run-handler (cmd)
   "Run Emacs dev-env."
-  (run-dat cmd :flakes "nix" "develop" ".#lisp" "-c" "emacs"))
+  (run* cmd :flake "nix" "develop" ".#lisp" "-c" "emacs"))
 
 (def update-handler (cmd)
   "Update flake."
-  (run-dat cmd :flakes "nix" "flake" "update"))
+  (run* cmd :flake "nix" "flake" "update"))
 
 (def show-handler (cmd)
   "Display error in flake."
-  (run-dat cmd :flakes "nix" "flake" "show"))
+  (run* cmd :flake "nix" "flake" "show"))
 
 (def version-handler (cmd)
   "Check SBCL version."
-  (run-dat cmd :flakes "nix" "develop" ".#lisp" "-c" "sbcl" "--version"))
+  (run* cmd :flake "nix" "develop" ".#lisp" "-c" "sbcl" "--version"))
 
 (def shell-handler (cmd)
   "Check SBCL version."
-  (run-dat cmd :flakes "nix" "develop" ".#lisp"))
+  (run* cmd :flake "nix" "develop" ".#lisp"))
 
 
 ;;; Kons-9
 (def kons-handler (cmd)
   "Open Kons-9 inside SBCL terminal."
   (progn
-    (run-dat cmd :flakes "nix" "develop" ".#lisp" "-c" "sbcl" "--eval" "(ql:quickload
+    (run* cmd "nix" "develop" ".#lisp" "-c" "sbcl" "--eval" "(ql:quickload
 :kons-9)" "--eval" "(kons-9:run)")))
 
 
@@ -42,25 +42,25 @@
 (def krei-web-handler (cmd)
   "Initialize Krei web."
   (progn
-    (run-dat cmd :web "hugo")
-    (run-dat cmd :web "npm" "start" "run" "&")
-    (run-dat cmd :web "firefox" "-new-tab" "https://localhost:1313")))
+    (run* cmd :web "hugo")
+    (run* cmd :web "npm" "start" "run" "&")
+    (run* cmd :web "firefox" "-new-tab" "https://localhost:1313")))
+
+(def redmine-handler (cmd)
+  (progn
+    (run* cmd :redmine-docker "firefox" "-new-tab" "http://0.0.0.0/")
+    (run* cmd :redmine-docker "make")))
+
+(def kb-handler (cmd)
+  (progn
+    (run* cmd :kb-docker "docker-compose" "-f"
+          "dev/containers/docker-compose.yml" "up" "-d")
+    (run* cmd :kb-docker "docker" "exec" "wiki-app" "yarn" "dev")))
 
 (def wordpress-handler (cmd)
   "Initialize Krei web."
   (progn
     (run cmd "wordpress" "-r")))
-
-(def redmine-handler (cmd)
-  (progn
-    (run-dat cmd :redmine-docker "firefox" "-new-tab" "http://0.0.0.0/")
-    (run-dat cmd :redmine-docker "make")))
-
-(def kb-handler (cmd)
-  (progn
-    (run-dat cmd :kb-docker "docker-compose" "-f"
-             "dev/containers/docker-compose.yml" "up" "-d")
-    (run-dat cmd :kb-docker "docker" "exec" "wiki-app" "yarn" "dev")))
 
 
 ;;; IDE tools

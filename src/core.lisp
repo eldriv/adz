@@ -20,7 +20,8 @@
      :flake (merge-pathnames #P"myflake/" (user-homedir-pathname))
      :web (merge-pathnames #P"gh/krei-systems.github.io"
                            (user-homedir-pathname))
-     :docker (merge-pathnames #P"gh/redmine-docker" (user-homedir-pathname))))
+     :redmine-docker (merge-pathnames #P"gh/redmine-docker" (user-homedir-pathname))
+     :kb-docker (merge-pathnames #P"gh/wiki" (user-homedir-pathname))))
 
 
 ;;; Utilities
@@ -46,14 +47,7 @@
                     :output :interactive
                     :error-output :interactive))
 
-(def run-flake (cmd command &rest args)
-  "Safely execute commands in myflake directory with logging."
-  (let ((dir (namestring (get-paths :flake))))
-    (log-msg cmd "Changing to directory: ~A~%" dir)
-    (uiop:chdir dir)
-    (apply #'run-cmd cmd command args)))
-
-(def run-web (cmd dat command &rest args)
+(def run-dat (cmd dat command &rest args)
   "Safely execute commands in krei-web directory with logging."
   (let ((dir (namestring (get-paths dat))))
     (log-msg cmd "Changing to directory: ~A~%" dir)

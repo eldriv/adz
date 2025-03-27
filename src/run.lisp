@@ -10,30 +10,30 @@
 
 (def run-handler (cmd)
   "Run Emacs dev-env."
-  (run-flake cmd "nix" "develop" ".#lisp" "-c" "emacs"))
+  (run-dat cmd :flakes "nix" "develop" ".#lisp" "-c" "emacs"))
 
 (def update-handler (cmd)
   "Update flake."
-  (run-flake cmd "nix" "flake" "update"))
+  (run-dat cmd :flakes "nix" "flake" "update"))
 
 (def show-handler (cmd)
   "Display error in flake."
-  (run-flake cmd "nix" "flake" "show"))
+  (run-dat cmd :flakes "nix" "flake" "show"))
 
 (def version-handler (cmd)
   "Check SBCL version."
-  (run-flake cmd "nix" "develop" ".#lisp" "-c" "sbcl" "--version"))
+  (run-dat cmd :flakes "nix" "develop" ".#lisp" "-c" "sbcl" "--version"))
 
 (def shell-handler (cmd)
   "Check SBCL version."
-  (run-flake cmd "nix" "develop" ".#lisp"))
+  (run-dat cmd :flakes "nix" "develop" ".#lisp"))
 
 
 ;;; Kons-9
 (def kons-handler (cmd)
   "Open Kons-9 inside SBCL terminal."
   (progn
-    (run-flake cmd "nix" "develop" ".#lisp" "-c" "sbcl" "--eval" "(ql:quickload
+    (run-dat cmd :flakes "nix" "develop" ".#lisp" "-c" "sbcl" "--eval" "(ql:quickload
 :kons-9)" "--eval" "(kons-9:run)")))
 
 
@@ -53,8 +53,15 @@
 
 (def redmine-handler (cmd)
   (progn
-    (run-web cmd :docker "firefox" "-new-tab" "http://0.0.0.0/")
-    (run-web cmd :docker "make")))
+    (run-web cmd :redmine-docker "firefox" "-new-tab" "http://0.0.0.0/")
+    (run-web cmd :redmine-docker "make")))
+
+(def kb-handler (cmd)
+  (progn
+    (run-web cmd :kb-docker "docker-compose" "-f"
+             "dev/containers/docker-compose.yml" "up" "-d")
+    (run-web cmd :kb-docker "docker" "exec" "wiki-app" "yarn" "dev")))
+
 
 ;;; IDE tools
 

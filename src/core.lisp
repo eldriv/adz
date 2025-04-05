@@ -15,24 +15,29 @@
      :usage "[command] [options]"
      :time 4.5))
 
-(defp *paths*
+(defp *path*
     (list
-     :flake (merge-pathnames #P"myflake/" (user-homedir-pathname))
-     :web (merge-pathnames #P"gh/krei-systems.github.io"
-                           (user-homedir-pathname))
-     :redmine-docker (merge-pathnames #P"gh/redmine-docker" (user-homedir-pathname))
-     :kb-docker (merge-pathnames #P"gh/wiki" (user-homedir-pathname))))
+     :flake #P"myflake/"
+     :web #P"gh/krei-systems.github.io"
+     :redmine-docker #P"gh/redmine-docker"
+     :kb-docker #P"gh/wiki"))
 
 
 ;;; Utilities
+
+(def path* ()
+  "Get path then merge it to the homedir pathname."
+  (loop :for x :on *path* :by #'cddr
+        :when (∧ (keywordp (car x)) (cadr x))
+          :append (list (car x) (merge-pathnames (cadr x) (user-homedir-pathname)))))
 
 (def get-config (key)
   "Get information from the *config*."
   (getf *config* key))
 
 (def get-paths (key)
-  "Get path from the *paths*"
-  (getf *paths* key))
+  "Get path from the *path*"
+  (getf (path*) key))
 
 (def- log-msg (cmd fmt &rest args)
   "Log message if verbose mode is enabled."

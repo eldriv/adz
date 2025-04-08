@@ -22,6 +22,10 @@
      :redmine-docker #P"gh/redmine-docker"
      :kb-docker #P"gh/wiki"))
 
+(defp *hostname*
+    (progn (uiop:getcwd)
+           (machine-instance)))
+
 
 ;;; Utilities
 

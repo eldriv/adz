@@ -92,3 +92,10 @@ rsync -av username@remote-host:/source/directory/ /local/destination/
   "Compress data during transfer."
   (let ((args (clingon:command-arguments cmd)))
     (apply #'run cmd "rsync" "-avz" args)))
+
+;;; hello
+
+(def greetings-user-handler (cmd)
+  (let* ((user *hostname*)
+         (msg (format t "Greetings, hello ~A!~%" (string user))))
+    msg))

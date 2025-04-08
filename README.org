@@ -1,6 +1,8 @@
 * adz
 
-It is a mini-wrapper CLI tool to run my Emacs development environment and others like graphic, web and IDE tools, and rsync into my NixOS machine.
+It is a mini-wrapper CLI tool to run my Emacs development environment and others like graphic, web and IDE tools, and rsync into my NixOS machine. 
+You can be able to extend this and change any values depends on your own needs. But if you have NixOS installed and might want to use flakes then 
+this CLI codebase structure is beneficial for you.
 
 * Dependencies
 - [[https://github.com/krei-systems/marie][Marie]]
@@ -17,14 +19,23 @@ After building, an executable named adz will be created. You can run it from wit
 #+begin_src
 ./adz --help
 #+end_src
+* Test
+To test it if it's working properly,
+#+begin_Src
+adz h
+#+end_Src
+
 To make it accessible globally, insert this into your shell configuration files—.bashrc or .zshenv,
 #+begin_src lisp
 export PATH="$HOME<your/project/directory/>:$PATH"
 #+end_Src
-Then run,
 
 * Lisp Flakes
+For NixOS users and have their flakes inside their machine for development environment, you have to change the values in the special variable named [[https://github.com/eldriv/adz/blob/main/src/core.lisp][*path*]] in able to adjust it with your own pathname.
+Then run,
 #+begin_Src lisp
 adz lf e # To run Emacs development environment
 adz lf sv # To Check SBCL version
 #+end_Src
+
+

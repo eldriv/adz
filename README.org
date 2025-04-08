@@ -23,15 +23,16 @@ After building, an executable named adz will be created. You can run it from wit
 #+begin_src
 ./adz --help
 #+end_src
-* Test
-To test it if it's working properly,
-#+begin_Src
-adz h
-#+end_Src
 
 To make it accessible globally, insert this into your shell configuration files—.bashrc or .zshenv,
 #+begin_src lisp
 export PATH="$HOME<your/project/directory/>:$PATH"
+#+end_Src
+
+* Test
+To test it if it's working properly,
+#+begin_Src
+adz h
 #+end_Src
 
 * Lisp Flakes

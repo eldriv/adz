@@ -97,5 +97,5 @@ rsync -av username@remote-host:/source/directory/ /local/destination/
 
 (def greetings-user-handler (cmd)
   (let* ((user *hostname*)
-         (msg (format t "Greetings, hello ~A!~%" (string user))))
+         (msg (format t "Greetings, hello ~A!~%" user)))
     msg))

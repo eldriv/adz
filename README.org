@@ -1,20 +1,24 @@
 * adz
 
 It is a mini-wrapper CLI tool to run my Emacs development environment and others like graphic, web and IDE tools, and rsync into my NixOS machine. 
-You can be able to extend this and change any values depends on your own needs. But if you have NixOS installed and might want to use flakes then 
-this CLI codebase structure is beneficial for you.
 
 * Dependencies
-- [[https://github.com/krei-systems/marie][Marie]]
-- [[https://github.com/eldriv/flakes-dev][Flakes]]
-- [[https://github.com/eldriv/scripts/tree/main/wordpress-script][Wordpress local]]
+- [[https://github.com/krei-systems/marie][Marie]] 
 
 * Usage
-
 We can build it using this command,
+If there's no marie yet, 
+#+begin_Src
+make clone
+#+end_Src
 #+begin_src makefile
-make 
+make build
 #+end_src
+To remove the executable
+#+begin_Src
+make clean
+#+end_src
+
 After building, an executable named adz will be created. You can run it from within the project directory using,
 #+begin_src
 ./adz --help
@@ -38,4 +42,5 @@ adz lf e # To run Emacs development environment
 adz lf sv # To Check SBCL version
 #+end_Src
 
-
+*NOTE:* You can be able to extend this and change any values depends on your own needs, just see the source code in able to do that and if you have NixOS installed and might want to use flakes then 
+this CLI codebase structure is beneficial for you.

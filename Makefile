@@ -27,6 +27,9 @@ build:
 		--eval '(asdf:make :$(SYSTEM_NAME))' \
 		--eval '(quit)'
 	ln -s $(PWD)/adz ~/bin
+  
+clone: 
+	cd ~/common-lisp || cd ~/quicklisp/local-projects && git clone https://github.com/krei-systems/marie.git
 
 clean:
 	rm -f $(BUILD_OUTPUT)

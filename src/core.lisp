@@ -15,18 +15,15 @@
      :usage "[command] [options]"
      :time 4.5))
 
-
-;;; NOTE: Change the values depends on your own needs
 (defp *path*
     (list
-     :flake #P"myflake/" 
+     :flake #P"myflake/"
      :web #P"gh/krei-systems.github.io"
      :redmine-docker #P"gh/redmine-docker"
      :kb-docker #P"gh/wiki"))
 
 (defp *hostname*
-    (progn (uiop:getcwd)
-           (machine-instance)))
+    (machine-instance))
 
 
 ;;; Utilities

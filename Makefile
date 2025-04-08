@@ -33,4 +33,4 @@ clone:
 
 clean:
 	rm -f $(BUILD_OUTPUT)
-	
+	rm -f ~/bin/$(BUILD_OUTPUT)

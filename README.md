@@ -59,6 +59,6 @@ adz lf sv   # To check SBCL version
 
 ## GIF
 
-![adz usage demo](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExc25tcWMxd3pxbjYzdHBmOHJyaXg2a25pZTU0bXMybmF6dWh2ZHFiNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/0BCvDy8vHdqVUdDnMf/giphy.gif)
+![adz usage demo](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExemZmM2FqOWI5bmR3MGtjODZ4cHdlOGlnb21tNHVyeTF6bDF4eGJnaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ujLrQBYlHF6X2YYUmy/giphy.gif)
 
 > **NOTE:** You can extend and change any values depending on your own needs—just see the source code to do that. If you have NixOS installed and want to use flakes, then this CLI codebase structure will be beneficial for you.

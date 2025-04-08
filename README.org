@@ -6,11 +6,11 @@ It is a mini-wrapper CLI tool to run my Emacs development environment and others
 - [[https://github.com/krei-systems/marie][Marie]] 
 
 * Usage
-We can build it using this command,
 If there's no marie yet, 
 #+begin_Src
 make clone
 #+end_Src
+Then we can build it using this command,
 #+begin_src makefile
 make build
 #+end_src

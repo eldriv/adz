@@ -1,9 +1,9 @@
-(uiop:define-package #:ems/src/commands
+(uiop:define-package #:adz/src/commands
   (:use #:cl
         #:marie
-        #:ems/src/core
-        #:ems/src/run))
-(in-package #:ems/src/commands)
+        #:adz/src/core
+        #:adz/src/run))
+(in-package #:adz/src/commands)
 
 ;;; Sub commands
 
@@ -43,22 +43,22 @@
 (define-sub-command krei-web (kw)
   "Run the krei-web."
   #'krei-web-handler
-  ", ems wt kw")
+  ", adz wt kw")
 
 (define-sub-command wordpress-local (wl)
   "Run the local wordpress."
   #'wordpress-handler
-  ", ems wt wl")
+  ", adz wt wl")
 
 (define-sub-command redmine-local (rl)
   "Run the local redmine"
   #'redmine-handler
-  ", ems wt rl")
+  ", adz wt rl")
 
 (define-sub-command kb-local (kl)
   "Run the local knowledge base."
   #'kb-handler
-  ", ems wt kl")
+  ", adz wt kl")
 
 
 ;;; IDE tools command
@@ -67,7 +67,7 @@
   "Run the VS code"
   #'vs-code-handler)
 
-(define-sub-command non-dev-emacs (ems)
+(define-sub-command non-dev-emacs (adz)
   "Run the non-flake emacs"
   #'emacs-handler)
 

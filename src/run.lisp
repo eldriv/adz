@@ -1,9 +1,9 @@
-(uiop:define-package #:ems/src/run
+(uiop:define-package #:adz/src/run
   (:use #:cl
         #:marie
-        #:ems/src/core))
+        #:adz/src/core))
 
-(in-package #:ems/src/run)
+(in-package #:adz/src/run)
 
 
 ;;; Emacs and Lisp

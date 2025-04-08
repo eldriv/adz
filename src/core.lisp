@@ -1,15 +1,15 @@
-(uiop:define-package #:ems/src/core
+(uiop:define-package #:adz/src/core
   (:use #:cl
         #:marie))
 
-(in-package #:ems/src/core)
+(in-package #:adz/src/core)
 
 
 ;;; Special config
 
 (defp *config*
     (list
-     :name "ems"
+     :name "adz"
      :description "A thin wrapper for interacting with my Lisp environment and others"
      :version "1.0.0"
      :usage "[command] [options]"

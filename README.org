@@ -1,4 +1,4 @@
-* ems 
+* adz
 
 It is a mini-wrapper CLI tool to run my Emacs development environment and others like graphic, web and IDE tools, and rsync into my NixOS machine.
 
@@ -13,9 +13,9 @@ We can build it using this command,
 #+begin_src makefile
 make 
 #+end_src
-After building, an executable named ems will be created. You can run it from within the project directory using,
+After building, an executable named adz will be created. You can run it from within the project directory using,
 #+begin_src
-./ems --help 
+./adz --help
 #+end_src
 To make it accessible globally, insert this into your shell configuration files—.bashrc or .zshenv,
 #+begin_src lisp
@@ -25,6 +25,6 @@ Then run,
 
 * Lisp Flakes
 #+begin_Src lisp
-ems lf e # To run Emacs development environment
-ems lf sv # To Check SBCL version
+adz lf e # To run Emacs development environment
+adz lf sv # To Check SBCL version
 #+end_Src

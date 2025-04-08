@@ -1,13 +1,13 @@
-(uiop:define-package #:ems/src/main
+(uiop:define-package #:adz/src/main
   (:use :cl
    :marie
-   #:ems/src/core
-   #:ems/src/run
-   #:ems/src/commands)
+   #:adz/src/core
+   #:adz/src/run
+   #:adz/src/commands)
   (:import-from :clingon)
   (:export :main))
 
-(in-package #:ems/src/main)
+(in-package #:adz/src/main)
 
 
 

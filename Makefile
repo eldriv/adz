@@ -11,8 +11,8 @@ MAKEFLAGS += --no-builtin-rules
 # BODY
 LISP = sbcl
 PROJECT_DIR = $(PWD)
-SYSTEM_NAME = ems
-BUILD_OUTPUT = ems
+SYSTEM_NAME = adz
+BUILD_OUTPUT = adz
 
 .PHONY: all
 all: build
@@ -26,7 +26,7 @@ build:
 		--eval '(ql:quickload :$(SYSTEM_NAME))' \
 		--eval '(asdf:make :$(SYSTEM_NAME))' \
 		--eval '(quit)'
-	ln -s $(PWD)/ems ~/bin
+	ln -s $(PWD)/adz ~/bin
 
 clean:
 	rm -f $(BUILD_OUTPUT)

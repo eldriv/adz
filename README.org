@@ -43,5 +43,9 @@ adz lf e # To run Emacs development environment
 adz lf sv # To Check SBCL version
 #+end_Src
 
+* GIF
+#+HTML:
+<img src="https://user-images.githubusercontent.com/74038190/212257465-7ce8d493-cac5-494e-982a-5a9deb852c4b.gif" width="100">
+
 *NOTE:* You can be able to extend this and change any values depends on your own needs, just see the source code in able to do that and if you have NixOS installed and might want to use flakes then 
 this CLI codebase structure is beneficial for you.

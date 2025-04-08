@@ -6,7 +6,7 @@
 
 - [Marie](https://github.com/krei-systems/marie)
 
-## Usage
+## Build
 
 If there's no `marie` yet:
 
@@ -26,6 +26,8 @@ To remove the executable:
 make clean
 ```
 
+## Usage
+
 After building, an executable named `adz` will be created. You can run it from within the project directory using:
 
 ```sh
@@ -37,8 +39,6 @@ To make it accessible globally, add this to your shell configuration file (`.bas
 ```sh
 export PATH="$HOME<your/project/directory/>:$PATH"
 ```
-
-## Test
 
 To test if it's working properly:
 

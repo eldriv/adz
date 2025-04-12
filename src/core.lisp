@@ -12,8 +12,8 @@
      :name "adz"
      :description "A thin wrapper for interacting with my Lisp environment and others"
      :version "1.0.0"
-     :usage "[command] [options]"
-     :time 4.5))
+     :usage "[main-command] [sub-command]"
+     :author (list "eldriv <eldriv@krei.systems>")))
 
 (defp *path*
     (list

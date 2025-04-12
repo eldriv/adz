@@ -32,7 +32,7 @@
    :description (get-config :description)
    :version (get-config :version)
    :usage (get-config :usage)
-   :authors '("Eldriv <eldriv@krei.systems>")
+   :authors (get-config :author)
    :options (make-cli-options)
    :handler #'top-level-handler
    :sub-commands (top-level-commands)))

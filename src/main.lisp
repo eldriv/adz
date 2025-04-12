@@ -10,7 +10,6 @@
 (in-package #:adz/src/main)
 
 
-
 (defm define-option (type short-name long-name description &key key)
   "Define a CLI option with standard structure"
   `(clingon:make-option
@@ -33,7 +32,7 @@
    :description (get-config :description)
    :version (get-config :version)
    :usage (get-config :usage)
-   :authors '("Eldriv <michael.adrian.villareal@valmiz.com>")
+   :authors '("Eldriv <eldriv@krei.systems>")
    :options (make-cli-options)
    :handler #'top-level-handler
    :sub-commands (top-level-commands)))

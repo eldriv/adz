@@ -30,32 +30,21 @@
 
 
 ;;; Kons-9
-(def kons-handler (cmd)
-  "Open Kons-9 inside SBCL terminal."
-  (progn
-    (run* cmd "nix" "develop" ".#lisp" "-c" "sbcl" "--eval" "(ql:quickload
-:kons-9)" "--eval" "(kons-9:run)")))
 
+;; (def kons-handler (cmd)
+;;   "Open Kons-9 inside SBCL terminal."
+;;   (progn
+;;     (run* cmd "nix" "develop" ".#lisp" "-c" "sbcl" "--eval" "(ql:quickload
+;; :kons-9)" "--eval" "(kons-9:run)")))
+
+
+;;; Inkscape
+
+(def inkscape-handler (cmd)
+  "Open Inkscape application."
+  (run cmd "inkscape"))
 
 ;;; Website tools
-
-(def krei-web-handler (cmd)
-  "Initialize Krei web."
-  (progn
-    (run* cmd :web "hugo")
-    (run* cmd :web "npm" "start" "run" "&")
-    (run* cmd :web "firefox" "-new-tab" "https://localhost:1313")))
-
-(def redmine-handler (cmd)
-  (progn
-    (run* cmd :redmine-docker "firefox" "-new-tab" "http://0.0.0.0/")
-    (run* cmd :redmine-docker "make")))
-
-(def kb-handler (cmd)
-  (progn
-    (run* cmd :kb-docker "docker-compose" "-f"
-          "dev/containers/docker-compose.yml" "up" "-d")
-    (run* cmd :kb-docker "docker" "exec" "wiki-app" "yarn" "dev")))
 
 (def wordpress-handler (cmd)
   "Initialize Krei web."

@@ -1,0 +1,34 @@
+* adz
+
+It is a mini-wrapper CLI tool to run my Emacs development environment and others like graphic, web and IDE tools, and rsync into my NixOS machine.
+
+* Dependencies
+- [[https://github.com/krei-systems/marie][Marie]]
+- [[https://github.com/eldriv/flakes-dev][Flakes]]
+- [[https://github.com/eldriv/scripts/tree/main/wordpress-script][Wordpress local]]
+
+* Usage
+
+We can build it using this command,
+#+begin_src makefile
+make 
+#+end_src
+After building, an executable named adz will be created. You can run it from within the project directory using,
+#+begin_src
+./adz --help
+#+end_src
+To make it accessible globally, insert this into your shell configuration files—.bashrc or .zshenv,
+#+begin_src lisp
+export PATH="$HOME<your/project/directory/>:$PATH"
+#+end_Src
+Then run,
+
+* Lisp Flakes
+#+begin_Src lisp
+adz lf e # To run Emacs development environment
+adz lf sv # To Check SBCL version
+#+end_Src
+
+* GIF
+#+HTML:
+<img src="https://user-images.githubusercontent.com/74038190/212257465-7ce8d493-cac5-494e-982a-5a9deb852c4b.gif" width="100">
